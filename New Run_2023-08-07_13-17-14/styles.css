@@ -1,0 +1,14 @@
+#gameGrid {
+  display: grid;
+  grid-template-columns: repeat(128, 1fr);
+  grid-template-rows: repeat(128, 1fr);
+}
+
+#gameGrid .cell {
+  border: 1px solid #000;
+  background-color: #fff;
+}
+
+#gameGrid .cell.active {
+  background-color: #000;
+}

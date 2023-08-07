@@ -1,0 +1,21 @@
+#gameGrid {
+    width: 1280px;
+    height: 1280px;
+    display: grid;
+    grid-template-columns: repeat(128, 1fr);
+    grid-template-rows: repeat(128, 1fr);
+}
+
+#gameGrid .cell {
+    width: 10px;
+    height: 10px;
+    border: 1px solid #ccc;
+}
+
+#gameGrid .cell.active {
+    background-color: #000;
+}
+
+#leaderboard {
+    margin-top: 20px;
+}

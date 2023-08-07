@@ -1,0 +1,54 @@
+// Leaderboard.js
+class Leaderboard {
+  constructor() {
+    this.scores = [];
+  }
+
+  addScore(player, score) {
+    this.scores.push({ player, score });
+  }
+
+  removeScore(player) {
+    this.scores = this.scores.filter(score => score.player !== player);
+  }
+
+  getTopScores(limit) {
+    return this.scores.sort((a, b) => b.score - a.score).slice(0, limit);
+  }
+}
+
+module.exports = Leaderboard;
+
+// Leaderboard.test.js
+const Leaderboard = require('../src/Leaderboard');
+
+describe('Leaderboard', () => {
+  let leaderboard;
+
+  beforeEach(() => {
+    leaderboard = new Leaderboard();
+  });
+
+  test('should add a score', () => {
+    leaderboard.addScore('John', 120);
+    expect(leaderboard.scores.length).toBe(1);
+    expect(leaderboard.scores[0].player).toBe('John');
+    expect(leaderboard.scores[0].score).toBe(120);
+  });
+
+  test('should remove a score', () => {
+    leaderboard.addScore('John', 120);
+    leaderboard.removeScore('John');
+    expect(leaderboard.scores.length).toBe(0);
+  });
+
+  test('should retrieve top scores', () => {
+    leaderboard.addScore('John', 120);
+    leaderboard.addScore('Jane', 150);
+    leaderboard.addScore('Joe', 100);
+    let topScores = leaderboard.getTopScores(2);
+    expect(topScores.length).toBe(2);
+    expect(topScores[0].player).toBe('Jane');
+    expect(topScores[1].player).toBe('John');
+  });
+});
